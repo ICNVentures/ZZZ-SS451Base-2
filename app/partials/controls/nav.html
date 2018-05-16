@@ -22,12 +22,12 @@
                 <div class="container">
                     <ul ng-if="tree.length > 1" class="nav navbar-nav pull-right hidden-xs hidden-sm">
                         <li ng-repeat="t in tree" class="piped" ng-class="{'active': isInPath('{{t.InteropID}}'),'dropdown': t.SubCategories.length > 0}">
-                            <a ng-if="t.SubCategories.length > 0" href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false" style="font-size: 16px;">{{t.Name}}</a>
-                            <a ng-if="t.SubCategories.length == 0" href="catalog/{{t.InteropID}}" style="font-size: 16px;">{{t.Name}}</a>
+                            <a ng-if="t.SubCategories.length > 0" href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false" style="font-size: 16px;color:#0a3c61;"><b>{{t.Name}}</b></a>
+                            <a ng-if="t.SubCategories.length == 0" href="catalog/{{t.InteropID}}" style="font-size: 16px;color:#0a3c61;"><b>{{t.Name}}</b></a>
                             <ul ng-if="t.SubCategories.length > 0" class="dropdown-menu">
-                                <li><a href="catalog/">All {{t.Name}}</a></li>
+                                <li><a href="catalog/" style="color:#0a3c61">All {{t.Name}}</a></li>
                                 <li ng-repeat="sc in t.SubCategories">
-                                    <a href="catalog/{{sc.InteropID}}">{{sc.Name}}</a>
+                                    <a href="catalog/{{sc.InteropID}}" style="color:#0a3c61">{{sc.Name}}</a>
                                 </li>
                             </ul>
                         </li>

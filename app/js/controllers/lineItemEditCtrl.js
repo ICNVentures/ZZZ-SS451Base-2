@@ -62,7 +62,7 @@ four51.app.controller('LineItemEditCtrl', ['$scope', '$routeParams', '$location'
         
         $scope.currentImage = function()
         {
-            alert('currentImage');
+            return "";
         };
         
         $scope.thumbImages = function()
