@@ -3,20 +3,29 @@
     <!-- BREADCRUMB!-->
     <productnav product="LineItem.Product" variant="LineItem.Variant" />
     <!-- PRODUCT IMAGE PANEL!-->
-    <div class="col-md-4 col-collapse">
+    <div class="col-md-5 col-collapse">
         <div class="panel panel-default">
             <div class="panel-body">
                 <loadingindicator ng-show="loadingImage && LineItem.Variant.IsMpowerVariant" />
                 <figure>
-                    <img id="451_img_prod_lg" class="product-image-large img-responsive" ng-src="currentImage()" imageonload />
-                    <div style="text-align:center">
-                        <a style="font-size:10px;font-weight:normal;" target="_blank" href="{{LineItem.Variant.PreviewUrl}}">View Full Size Image</a>
-                    </div>
+                    <a id="aFullSize" style="width:100%" target="_blank" ng-href="{{LineItem.Variant.PreviewUrl || LineItem.Variant.LargeImageUrl || LineItem.Product.LargeImageUrl}}" imageonload>
+                        <img title="Click to open a full-size image" id="451_img_prod_lg" class="product-image-large img-responsive" ng-src="{{LineItem.Variant.PreviewUrl || LineItem.Variant.LargeImageUrl || LineItem.Product.LargeImageUrl}}" imageonload />
+                    </a>
+                    <div id="divImageList" style="text-align:center;border: 1px solid rgba(0,0,0,0.05); margin-top:10px;padding:10px;"></div>
+                    <div id="divChart" style="text-align:center;margin-top:10px;"></div>
+                    <script type="text/javascript">
+                            function showimg(url, full)
+                            {
+                                var elem = document.getElementById('451_img_prod_lg');
+                                elem.src = url;
+                                elem = document.getElementById('aFullSize');
+                                elem.href = full;
+                            }
+                    </script>
                 </figure>
-                <div class="empty" ng-hide="LineItem.Variant.PreviewUrl || LineItem.Variant.LargeImageUrl || LineItem.Variant.LargeImageUrl">
+                <!--<div class="empty" ng-hide="LineItem.Variant.PreviewUrl || LineItem.Variant.LargeImageUrl || LineItem.Product.LargeImageUrl">
                     <span class="fa empty"><i class="fa fa-camera"></i></span>
-                </div>
-                {{ thumbImages() }}
+                </div>-->
             </div>
             <div class="panel-footer" ng-show="LineItem.Product.Type=='VariableText' && LineItem.Variant">
                 <span class="btn-group">
@@ -36,7 +45,8 @@
             </div>
         </div>
     </div>
-    <div class="col-md-7 col-md-offset-1 col-collapse">
+
+    <div class="col-md-6 col-md-offset-1 col-collapse">
         <!-- PRODUCT INFO!-->
         <div class="row">
             <div class="col-xs-12">

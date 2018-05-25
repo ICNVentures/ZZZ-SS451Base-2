@@ -24,7 +24,6 @@ four51.app.controller('LineItemEditCtrl', ['$scope', '$routeParams', '$location'
                     Product.get(data.product.InteropID, function(prod){
                         $scope.currentProduct = prod;
                         $scope.allVariants = prod.Variants;
-                        alert('[' + prod.InteropID + '][' + prod.Variants.length + ']');
                     });
                 }, 1, 10, null);
             }
@@ -59,33 +58,5 @@ four51.app.controller('LineItemEditCtrl', ['$scope', '$routeParams', '$location'
                 console.log(ex);
             });
         }
-        
-        $scope.currentImage = function()
-        {
-            return "";
-        };
-        
-        $scope.thumbImages = function()
-        {
-            return '';
-            
-            var typ = 'Static'; //$scope.currentProduct.Type;
-            
-            if (typ == 'Static')
-            {
-                var x = '';
-                
-                x += 'cnt=[' + $scope.currentProduct.Variants.length + ']<br />';
-                
-        		angular.forEach($scope.currentProduct.Variants, function(v) 
-        		{
-    			    if (v.LargeImageUrl)
-    			    {
-    			        x += '[' + v.LargeImageUrl + ']<br />';
-    			    }
-    		    });
-            }
-            
-            return x;
-        };
-    }]);
+       
+   }]);

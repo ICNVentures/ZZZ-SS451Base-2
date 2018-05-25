@@ -31,6 +31,8 @@ function ($scope, $routeParams, $route, $location, $451, Product, ProductDisplay
 	function init(searchTerm, callback) {
 		ProductDisplayService.getProductAndVariant($routeParams.productInteropID, $routeParams.variantInteropID, function (data) {
 			$scope.LineItem.Product = data.product;
+			$scope.PD = data.product.Description;
+            imgList($scope.PD);
 			$scope.LineItem.Variant = data.variant;
 			ProductDisplayService.setNewLineItemScope($scope);
 			ProductDisplayService.setProductViewScope($scope);
@@ -47,6 +49,73 @@ function ($scope, $routeParams, $route, $location, $451, Product, ProductDisplay
 			init($scope.searchTerm);
 	});
 
+    function imgList(desc)
+    {
+        var x = '';
+        var idx = '<div class="divrl" style="height: 0px; visibility: hidden;">';
+        var idx2 = '<div class="divrl" style="height: 0px; visibility: hidden; ">';
+        var jdx = '|X=</div>';
+        
+        var i = desc.indexOf(idx);
+        var l = 0;
+        
+        if (i == -1)
+        {
+            i = desc.indexOf(idx2);
+            l = idx2.length;
+        }
+        else
+        {
+            l = idx.length;
+        }
+        
+        var j = desc.indexOf(jdx);
+        var help = '';
+        var cnt = 0;
+        
+        if (i >= 0)
+        {
+            var lst = desc.substring(i + l, j);
+            var url = '';
+            
+    		angular.forEach(lst.split('|'), function(ls) 
+    		{
+    		    var ti = ls.split('=');
+    		    
+    		    if (ti[0] == 'U')
+    		    {
+    		        url = ti[1];
+    		    }
+    		    else if (ti[0] == 'I')
+    		    {
+    		        var dlink = url + 'D/' + ti[1];
+    		        var tlink = url + 'T/' + ti[1];
+    		        var ilink = url + 'I/' + ti[1];
+    		        
+    		        x += '<a href="javascript:showimg(\'' + dlink + '\',\'' + ilink + '\')"><img src="' + tlink + '" style="height:50px;margin:10px;" /></a>';
+    		        //showimg(\'' + link + '\')
+    		        cnt++;
+    		    }
+    		    else if (ti[0] == 'H')
+    		    {
+    		        help = url + 'Charts/' + ti[1];
+    		    }
+    		});
+        }
+        
+        if (cnt > 1)
+        {
+            var elem = document.getElementById('divImageList');
+            elem.innerHTML = x;
+        }
+        
+        if (help != '')
+        {
+            elem = document.getElementById('divChart');
+            elem.innerHTML = '<a target="_blank" href="' + help + '"><img style="width:100%" src="' + help + '" /></a';
+        }
+    }
+    
 	$scope.searchVariants = function(searchTerm) {
 		$scope.searchTerm = searchTerm;
 		$scope.settings.currentPage == 1 ?
