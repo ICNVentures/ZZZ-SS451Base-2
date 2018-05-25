@@ -3,7 +3,7 @@ four51.app.controller('NavCtrl', ['$location', '$route', '$scope', '$451', 'User
         $scope.Logout = function(){
             User.logout();
             if ($scope.isAnon) {
-                $location.path("/catalog");
+                $location.path("/logoff");
                 User.login(function(user) {
                     $scope.user = user;
                 });
