@@ -15,7 +15,7 @@ function headernavigation() {
             '<section class="header-navigation">',
             '<div class="row">',
             '<div class="col-xs-12 col-sm-6 pull-left">',
-            '<ul style="float:left !important;"><li style="float:left !important;"><span style="color: #000;"><landinginfo></landinginfo></li></span></ul>',
+            '<ul style="float:left !important;"><li style="float:left !important;"><span style="color: #000;"><contactinfo></contactinfo></li></span></ul>',
             '</div>',
             '<div class="col-xs-12 col-sm-6 pull-right">',
             '<ul>',

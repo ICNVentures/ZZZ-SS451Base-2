@@ -6,6 +6,15 @@ four51.app.directive("landinginfo", function() {
 	return obj;
 });
 
+four51.app.directive("contactinfo", function() {
+	var obj = {
+		restrict: 'E',
+		templateUrl:'contactinfo.html'
+	};
+	return obj;
+});
+
+
 four51.app.directive('productlistview', function() {
     var obj = {
         restrict: "E",
